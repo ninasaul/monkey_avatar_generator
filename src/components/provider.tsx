@@ -15,7 +15,7 @@ interface StateType {
   size: number;
   amount: number;
 }
-export const AppProvider = ({ children }: AppProviderProps) => {
+export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [state, setStates] = useState<StateType>({ size: 150, amount: 1 });
 
   const setState = (arg = {}) => {
