@@ -19,7 +19,7 @@ Monkey Avatar Generator is a React-based application that generates and download
 
 ## Design Files
 
-The avatar designs are sourced from [Design Source Platform] ([Jello](https://www.figma.com/community/file/1070732790145853382/monkey-kingdom-nft-avatar-generator)). You can find the design files in the /design folder of the repository.
+The avatar designs are sourced from [Figma Community] ([Jello](https://www.figma.com/community/file/1070732790145853382/monkey-kingdom-nft-avatar-generator)). You can find the design files in the /design folder of the repository.
 
 ## Contribution
 
