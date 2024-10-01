@@ -41,7 +41,7 @@ export default function useAvatar() {
     if (keys.length === 0) return null;
     const randomKey = keys[Math.floor(Math.random() * keys.length)];
     const module = await folder[randomKey]();
-    return module.default; // 加载图片路径
+    return module.default;
   }
 
   async function getRandomCombination(): Promise<string[]> {
@@ -51,7 +51,6 @@ export default function useAvatar() {
     const wukongImage = await getRandomImage(imageFolders.wukong);
     results.push(wukongImage);
 
-    // 其他部分（head, eyes, body, extras, mouth），可以为空
     const headImage =
       Math.random() > 0.5 ? await getRandomImage(imageFolders.head) : null;
     const eyesImage =
@@ -63,7 +62,7 @@ export default function useAvatar() {
     const mouthImage =
       Math.random() > 0.5 ? await getRandomImage(imageFolders.mouth) : null;
     results.push(headImage, eyesImage, bodyImage, extrasImage, mouthImage);
-    return results.filter((i) => i !== null) as string[]; // 过滤掉 null 值
+    return results.filter((i) => i !== null) as string[];
   }
 
   const getAvatar = async (): Promise<void> => {

@@ -56,7 +56,7 @@ function App() {
 
   return (
     <>
-      {total && (
+      {total > 0 && (
         <>
           <div
             className={styles.loadings}

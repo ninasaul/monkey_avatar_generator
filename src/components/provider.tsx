@@ -16,11 +16,11 @@ interface StateType {
   amount: number;
 }
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  const [state, setStates] = useState<StateType>({ size: 150, amount: 1 });
+  const [state, setStates] = useState<StateType>({ size: 200, amount: 1 });
 
   const setState = (arg = {}) => {
     setStates((prevState) => ({
-      ...prevState, // 保留其他字段
+      ...prevState,
       ...arg,
     }));
   };
