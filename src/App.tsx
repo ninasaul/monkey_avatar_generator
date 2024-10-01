@@ -1,16 +1,30 @@
 import AvatarItem from "./components/avatar";
 import { useApp } from "./components/provider";
 import styles from "./app.module.css";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import html2canvas from "html2canvas-pro";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import logo from "./assets/logo.png";
+
 interface ValueBlockProps {
   label: string;
   onChange: (value: number) => void;
   value: number;
 }
+
+const Logo: React.FC = () => {
+  const [keys, setKeys] = useState(23);
+  useEffect(() => {
+    const sut = setInterval(() => {
+      setKeys((prev) => prev + 1);
+    }, 2500);
+
+    return () => {
+      clearInterval(sut);
+    };
+  }, []);
+  return <AvatarItem key={keys} size={40} />;
+};
 
 const ValueBlock = ({ label, onChange, value }: ValueBlockProps) => {
   return (
@@ -69,9 +83,7 @@ function App() {
       )}
       <div className={styles.bar}>
         <div className={styles.bar_title}>
-          <h1>
-            <AvatarItem size={40} />
-          </h1>
+          <Logo />
           <ValueBlock
             label="size"
             onChange={(v: number) => setState({ size: v })}
