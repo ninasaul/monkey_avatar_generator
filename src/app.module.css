@@ -11,7 +11,9 @@
   justify-content: space-between;
   font-size: 12px;
 }
-
+.bar h1{
+  font-weight: 800;
+}
 .bar button {
   padding: 6px 15px;
   border-radius: 4px;

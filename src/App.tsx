@@ -57,6 +57,7 @@ function App() {
       <div>
         <div className={styles.bar}>
           <div className={styles.bar_title}>
+            <h1>$Monkey</h1>
             <ValueBlock
               label="size"
               onChange={(v) => setState({ size: v || 32 })}
