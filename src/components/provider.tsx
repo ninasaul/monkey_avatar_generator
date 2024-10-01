@@ -8,13 +8,16 @@ interface AppContextType {
 interface AppProviderProps {
   children: ReactNode;
 }
-export const appContext = React.createContext<AppContextType | undefined>(
-  undefined
-);
+
 interface StateType {
   size: number;
   amount: number;
 }
+
+export const appContext = React.createContext<AppContextType | undefined>(
+  undefined
+);
+
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [state, setStates] = useState<StateType>({ size: 200, amount: 1 });
 
