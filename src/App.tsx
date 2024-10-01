@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import html2canvas from "html2canvas-pro";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import logo from "./assets/logo.png";
 interface ValueBlockProps {
   label: string;
   onChange: (value: number) => void;
@@ -14,7 +15,7 @@ interface ValueBlockProps {
 const ValueBlock = ({ label, onChange, value }: ValueBlockProps) => {
   return (
     <div className={styles.block}>
-      <div>{label}:</div>
+      <div>{label}</div>
       <div>
         <input
           type="number"
@@ -39,13 +40,14 @@ function App() {
     const imgFolder = zip.folder("images");
     setLoading(true);
     for (let i = 0; i < avatarRefs.current.length; i++) {
-      console.log(`imgBase64::`, i, avatarRefs.current[i]);
-      avatarRefs.current[i].classList.add(styles.capture);
-      const canvas = await html2canvas(avatarRefs.current[i]);
-      const imgData = canvas.toDataURL("image/png");
-      const imgBase64 = imgData.split(",")[1];
-      setTotal(i + 1);
-      imgFolder?.file(`avatar_${i + 1}.png`, imgBase64, { base64: true });
+      if (avatarRefs.current[i]) {
+        avatarRefs.current[i].classList.add(styles.capture);
+        const canvas = await html2canvas(avatarRefs.current[i]);
+        const imgData = canvas.toDataURL("image/png");
+        const imgBase64 = imgData.split(",")[1];
+        setTotal(i + 1);
+        imgFolder?.file(`avatar_${i + 1}.png`, imgBase64, { base64: true });
+      }
     }
 
     const zipBlob = await zip.generateAsync({ type: "blob" });
@@ -67,7 +69,9 @@ function App() {
       )}
       <div className={styles.bar}>
         <div className={styles.bar_title}>
-          <h1>$Monkey</h1>
+          <h1>
+            <AvatarItem size={40} />
+          </h1>
           <ValueBlock
             label="size"
             onChange={(v: number) => setState({ size: v || 32 })}
@@ -95,7 +99,11 @@ function App() {
           }}
         >
           {new Array(amount || 1).fill(0).map((_, index) => (
-            <div key={index} ref={(el) => (avatarRefs.current[index] = el!)}>
+            <div
+              key={index}
+              className={styles.boxs}
+              ref={(el) => (avatarRefs.current[index] = el!)}
+            >
               <AvatarItem size={size} />
             </div>
           ))}
