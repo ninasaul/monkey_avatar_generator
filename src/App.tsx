@@ -1,6 +1,10 @@
 import AvatarItem from "./components/avatar";
 import { useApp, AppProvider } from "./components/provider";
 import styles from "./app.module.css";
+import { useRef, useState } from "react";
+import html2canvas from "html2canvas-pro";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 interface ValueBlockProps {
   label: string;
   onChange: (value: number) => void;
@@ -25,20 +29,52 @@ const ValueBlock = ({ label, onChange, value }: ValueBlockProps) => {
 function App() {
   const { state, setState } = useApp();
   const { size, amount } = state;
+  const avatarRefs = useRef<HTMLDivElement[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [total, setTotal] = useState(1);
+
+  const captureImages = async () => {
+    if (avatarRefs.current && avatarRefs.current.length === 0) return;
+    const zip = new JSZip();
+    const imgFolder = zip.folder("images");
+    setLoading(true);
+    for (let i = 0; i < avatarRefs.current.length; i++) {
+      const canvas = await html2canvas(avatarRefs.current[i]);
+      const imgData = canvas.toDataURL("image/png");
+      const imgBase64 = imgData.split(",")[1];
+      console.log(`imgBase64::`, i);
+      setTotal(i + 1);
+      imgFolder?.file(`avatar_${i + 1}.png`, imgBase64, { base64: true });
+    }
+
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+    setLoading(false);
+    saveAs(zipBlob, "avatars.zip");
+  };
+
   return (
     <AppProvider>
       <div>
         <div className={styles.bar}>
-          <ValueBlock
-            label="size"
-            onChange={(v) => setState({ size: v || 32 })}
-            value={size}
-          />
-          <ValueBlock
-            value={amount}
-            label="items"
-            onChange={(v) => setState({ amount: v })}
-          />
+          <div className={styles.bar_title}>
+            <ValueBlock
+              label="size"
+              onChange={(v) => setState({ size: v || 32 })}
+              value={size}
+            />
+            <ValueBlock
+              value={amount}
+              label="items"
+              onChange={(v) => setState({ amount: v })}
+            />
+          </div>
+          <div className={styles.bar_title}>
+            {loading ? (
+              `Downloading ${total}/${amount} ...`
+            ) : (
+              <button onClick={captureImages}>Download</button>
+            )}
+          </div>
         </div>
         <div className={styles.list_wrap}>
           <div
@@ -48,7 +84,9 @@ function App() {
             }}
           >
             {new Array(amount || 1).fill(0).map((_, index) => (
-              <AvatarItem key={index} size={size} />
+              <div key={index} ref={(el) => (avatarRefs.current[index] = el!)}>
+                <AvatarItem size={size} />
+              </div>
             ))}
           </div>
         </div>

@@ -7,25 +7,56 @@
 .block {
   display: flex;
   align-items: center;
-  gap:8px;
+  gap: 8px;
+  justify-content: space-between;
+  font-size: 12px;
 }
-.block input{
-  border: none;
-  padding:4px 4px;
+
+.bar button {
+  padding: 6px 15px;
+  border-radius: 4px;
   outline: none;
+  background-color: #222;
+  color: #fff;
+  border:none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: .3s;
 }
-.list_wrap{
+.bar button:hover {
+  background-color: #111;
+}
+
+.block input {
+  border: none;
+  padding: 4px 4px;
+  outline: none;
+  border-radius: 4px;
+  background-color: #202020;
+  color: #fff;
+}
+
+.bar_title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.list_wrap {
   padding: 20px;
   padding-top: 130px;
 }
+
 .bar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 20px;
   position: fixed;
-  left:0;
-  top:0;
-  right:0;
+  left: 0;
+  top: 0;
+  right: 0;
   z-index: 9;
   background-color: #333;
   color: #fff;
