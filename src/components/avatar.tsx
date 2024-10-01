@@ -15,14 +15,14 @@ const AvatarItem: React.FC<AvatarItemProps> = ({ size }) => {
               <img src={item} alt="avatar" />
             </div>
           ))}
-          <div className={styles.info}>
+          {/* <div className={styles.info}>
             {imgs.map((item: string) => (
               <div key={item} className={styles.img_info}>
                 <div>{item.split("/").pop()?.split("=")[0]}: </div>
                 {item.split("/").pop()?.split("=")[1].split(".")[0]}
               </div>
             ))}
-          </div>
+          </div> */}
         </>
       )}
     </div>
