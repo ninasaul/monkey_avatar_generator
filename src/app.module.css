@@ -1,0 +1,37 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 10px;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  gap:8px;
+}
+.block input{
+  border: none;
+  padding:4px 4px;
+  outline: none;
+}
+.list_wrap{
+  padding: 20px;
+  padding-top: 130px;
+}
+.bar {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  left:0;
+  top:0;
+  right:0;
+  z-index: 9;
+  background-color: #333;
+  color: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}

@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+import AvatarItem from "./components/avatar";
+import { useApp, AppProvider } from "./components/provider";
+import styles from "./app.module.css";
+interface ValueBlockProps {
+  label: string;
+  onChange: (value: number) => void;
+  value: number;
 }
 
-export default App
+const ValueBlock = ({ label, onChange, value }: ValueBlockProps) => {
+  return (
+    <div className={styles.block}>
+      <div>{label}:</div>
+      <div>
+        <input
+          type="number"
+          value={value}
+          onChange={(e) => onChange(e.target.valueAsNumber)}
+        />
+      </div>
+    </div>
+  );
+};
+
+function App() {
+  const { state, setState } = useApp();
+  const { size, amount } = state;
+  return (
+    <AppProvider>
+      <div>
+        <div className={styles.bar}>
+          <ValueBlock
+            label="size"
+            onChange={(v) => setState({ size: v || 32 })}
+            value={size}
+          />
+          <ValueBlock
+            value={amount}
+            label="items"
+            onChange={(v) => setState({ amount: v })}
+          />
+        </div>
+        <div className={styles.list_wrap}>
+          <div
+            className={styles.list}
+            style={{
+              gridTemplateColumns: `repeat(auto-fill, minmax(${size}px, 1fr))`,
+            }}
+          >
+            {new Array(amount || 1).fill(0).map((_, index) => (
+              <AvatarItem key={index} size={size} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </AppProvider>
+  );
+}
+
+export default App;
