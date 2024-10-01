@@ -32,8 +32,20 @@
 
 }
 
+@keyframes zoomIn {
+  from {
+    transform: translateX(-50%) translateY(-50%) scale(1.2);
+  }
+
+  to {
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+
+}
+
 .capture {
   z-index: 30;
+  transition: .1s;
 }
 
 .block {
