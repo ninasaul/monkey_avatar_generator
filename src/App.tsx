@@ -1,5 +1,5 @@
 import AvatarItem from "./components/avatar";
-import { useApp, AppProvider } from "./components/provider";
+import { useApp } from "./components/provider";
 import styles from "./app.module.css";
 import { useRef, useState } from "react";
 import html2canvas from "html2canvas-pro";
