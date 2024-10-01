@@ -1,21 +1,30 @@
-# React + TypeScript + Vite
+# Monkey Avatar Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Monkey Avatar Generator is a React-based application that generates and downloads monkey avatars. Users can customize the avatar size and batch download the generated avatars as a ZIP file.
 
-While this project uses React, Vite supports many popular JS frameworks. [See all the supported frameworks](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).
+## Features
 
-## Deploy Your Own
+- Generate random monkey avatars
+- Customize avatar size
+- Batch download avatars and package them into a ZIP file
 
-Deploy your own Vite project with Vercel.
+## Installation
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/vite-react&template=vite-react)
+1. Clone the repository to your local machine:
 
-_Live Example: https://vite-react-example.vercel.app_
+   ```sh
+   git clone https://github.com/saul/monkey_avatar_generator.git
+   cd monkey_avatar_generator
+   ```
 
-### Deploying From Your Terminal
+## Design Files
 
-You can deploy your new Vite project with a single command from your terminal using [Vercel CLI](https://vercel.com/download):
+The avatar designs are sourced from [Design Source Platform] ([Jello](https://www.figma.com/community/file/1070732790145853382/monkey-kingdom-nft-avatar-generator)). You can find the design files in the /design folder of the repository.
 
-```shell
-$ vercel
-```
+## Contribution
+
+Contributions are welcome! Please submit a Pull Request or report any issues.
+
+## License
+
+This project is licensed under the MIT License. For more details, please refer to the LICENSE file.
