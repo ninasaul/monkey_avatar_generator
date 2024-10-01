@@ -54,16 +54,15 @@ export default function useAvatar() {
     // 其他部分（head, eyes, body, extras, mouth），可以为空
     const headImage =
       Math.random() > 0.5 ? await getRandomImage(imageFolders.head) : null;
-    // const eyesImage =
-    //   Math.random() > 0.5 ? await getRandomImage(imageFolders.eyes) : null;
+    const eyesImage =
+      Math.random() > 0.5 ? await getRandomImage(imageFolders.eyes) : null;
     const bodyImage =
       Math.random() > 0.5 ? await getRandomImage(imageFolders.body) : null;
     const extrasImage =
       Math.random() > 0.5 ? await getRandomImage(imageFolders.extras) : null;
-    // const mouthImage =
-    //   Math.random() > 0.5 ? await getRandomImage(imageFolders.mouth) : null;
-    // results.push(headImage, eyesImage, bodyImage, extrasImage, mouthImage);
-    results.push(headImage,bodyImage,extrasImage) //, eyesImage, bodyImage, extrasImage, mouthImage);
+    const mouthImage =
+      Math.random() > 0.5 ? await getRandomImage(imageFolders.mouth) : null;
+    results.push(headImage, eyesImage, bodyImage, extrasImage, mouthImage);
     return results.filter((i) => i !== null) as string[]; // 过滤掉 null 值
   }
 

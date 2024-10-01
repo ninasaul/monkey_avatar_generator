@@ -18,7 +18,8 @@
   height: 100%;
 
 }
-.info{
+
+.info {
   position: absolute;
   background-color: rgba(0, 0, 0, .9);
   color: #fff;
@@ -26,17 +27,28 @@
   padding: 10px 6px;
   display: none;
   border-radius: 12px;
-  &>div{
+
+  &>div {
     padding: 3px 8px;
   }
 }
-.img .info{
+
+.img .info {
   position: absolute;
-  left:100%;
-  top:0;
+  left: 100%;
+  top: 0;
   z-index: 9;
 }
 
-.img:hover .info{
+.img:hover .info {
   display: block;
+}
+
+.img_info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  &>div{
+    opacity: .8;
+  }
 }
