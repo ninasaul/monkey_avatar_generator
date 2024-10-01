@@ -2,7 +2,7 @@ import React, { useState, useContext, ReactNode } from "react";
 
 interface AppContextType {
   state: StateType;
-  setState: () => void;
+  setState: (arg: Partial<StateType>) => void;
 }
 
 interface AppProviderProps {

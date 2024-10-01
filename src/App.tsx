@@ -60,13 +60,13 @@ function App() {
             <h1>$Monkey</h1>
             <ValueBlock
               label="size"
-              onChange={(v) => setState({ size: v || 32 })}
+              onChange={(v: number) => setState({ size: v || 32 })}
               value={size}
             />
             <ValueBlock
               value={amount}
               label="items"
-              onChange={(v) => setState({ amount: v })}
+              onChange={(v: number) => setState({ amount: v })}
             />
           </div>
           <div className={styles.bar_title}>
