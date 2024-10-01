@@ -46,6 +46,10 @@
 .capture {
   z-index: 30;
   transition: .1s;
+
+  &>div {
+    animation: inherit;
+  }
 }
 
 .block {

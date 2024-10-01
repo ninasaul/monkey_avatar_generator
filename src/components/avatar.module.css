@@ -1,8 +1,20 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
 .img {
   width: 120px;
   height: 120px;
   position: relative;
   z-index: 0;
+  animation: fadeIn .3s ease-in;
 }
 
 .imgbox {
@@ -49,7 +61,8 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  &>div{
+
+  &>div {
     opacity: .8;
   }
 }
