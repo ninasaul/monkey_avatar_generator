@@ -74,7 +74,7 @@ function App() {
           </h1>
           <ValueBlock
             label="size"
-            onChange={(v: number) => setState({ size: v || 32 })}
+            onChange={(v: number) => setState({ size: v })}
             value={size}
           />
           <ValueBlock

@@ -14,11 +14,9 @@ interface StateType {
   amount: number;
 }
 
-export const appContext = React.createContext<AppContextType | undefined>(
-  undefined
-);
+const appContext = React.createContext<AppContextType | undefined>(undefined);
 
-export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
+const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [state, setStates] = useState<StateType>({ size: 200, amount: 1 });
 
   const setState = (arg = {}) => {
@@ -35,10 +33,12 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   );
 };
 
-export const useApp = (): AppContextType => {
+const useApp = (): AppContextType => {
   const context = useContext(appContext);
   if (!context) {
     throw new Error("useApp must be used within an AppProvider");
   }
   return context;
 };
+
+export { AppProvider, useApp, appContext };
