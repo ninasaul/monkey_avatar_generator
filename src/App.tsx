@@ -17,7 +17,7 @@ const Logo: React.FC = () => {
   useEffect(() => {
     const sut = setInterval(() => {
       setKeys((prev) => prev + 1);
-    }, 2500);
+    }, 5000);
 
     return () => {
       clearInterval(sut);
