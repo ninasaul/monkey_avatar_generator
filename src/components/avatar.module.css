@@ -40,9 +40,12 @@
   padding: 10px 6px;
   display: none;
   border-radius: 12px;
+  z-index: 90;
 
   &>div {
     padding: 3px 8px;
+    display: flex;
+    align-items: center;
   }
 }
 

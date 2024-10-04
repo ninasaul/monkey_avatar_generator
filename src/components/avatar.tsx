@@ -21,16 +21,21 @@ const AvatarItem = forwardRef<HTMLDivElement, AvatarItemProps>(
                 <img src={item} alt="avatar" />
               </div>
             ))}
-            {/* <div className={styles.info}>
-            {imgs.map((item: string) => (
-              <div key={item} className={styles.img_info}>
-                <div>{item.split("/").pop()?.split("=")[0]}: </div>
-                {item.split("/").pop()?.split("=")[1].split(".")[0]}
-              </div>
-            ))}
-          </div> */}
           </>
         )}
+        <div className={styles.info}>
+          <div>name:#{+1} </div>
+
+          {imgs.map(item => {
+            console.log(`item::`, item);
+            return (
+              <div key={item} className={styles.img_info}>
+                <div>{item && item.split("/").pop()?.split("=")[0]}: </div>
+                {item && item.split("/").pop()?.split("=")[1].split(".")[0]}
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }

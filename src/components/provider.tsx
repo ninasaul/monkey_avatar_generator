@@ -17,7 +17,7 @@ interface StateType {
 const appContext = React.createContext<AppContextType | undefined>(undefined);
 
 const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  const [state, setStates] = useState<StateType>({ size: 200, amount: 1 });
+  const [state, setStates] = useState<StateType>({ size: 256, amount: 1 });
 
   const setState = (arg = {}) => {
     setStates((prevState) => ({
