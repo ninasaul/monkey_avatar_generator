@@ -23,7 +23,7 @@ const AvatarItem = forwardRef<HTMLDivElement, AvatarItemProps>(
             ))}
           </>
         )}
-        <div className={styles.info}>
+        {/* <div className={styles.info}>
           <div>name:#{+1} </div>
 
           {imgs.map(item => {
@@ -35,7 +35,7 @@ const AvatarItem = forwardRef<HTMLDivElement, AvatarItemProps>(
               </div>
             );
           })}
-        </div>
+        </div> */}
       </div>
     );
   }
