@@ -27,7 +27,7 @@ const AvatarItem = forwardRef<HTMLDivElement, AvatarItemProps>(
           <div>name:#{+1} </div>
 
           {imgs.map(item => {
-            console.log(`item::`, item);
+            if(!item) return null;
             return (
               <div key={item} className={styles.img_info}>
                 <div>{item && item.split("/").pop()?.split("=")[0]}: </div>
