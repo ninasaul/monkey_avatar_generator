@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useBase64 } from "./useBase64";
 
 const bodys: ImageFolder = import.meta.glob(
   "/src/assets/monkey/body/*.svg"
@@ -24,8 +25,16 @@ const extras: ImageFolder = import.meta.glob(
 
 type ImageFolder = Record<string, () => Promise<{ default: string }>>;
 
+type AttrTypes = {
+  trait_type: string;
+  value: string;
+};
 export default function useAvatar() {
   const [imgs, setImgs] = useState<string[]>([]);
+  const [attr, setAttr] = useState<AttrTypes[]>([]);
+  const [name, setName] = useState<string>("");
+  const { encodeBase64 } = useBase64();
+
   const imageFolders: Record<string, ImageFolder> = {
     wukong: wukongs,
     head: heads,
@@ -67,6 +76,14 @@ export default function useAvatar() {
 
   const getAvatar = async (): Promise<void> => {
     const imgList = await getRandomCombination();
+    const attributes = imgList.map((i) => {
+      const item = decodeURIComponent(i).split("/").pop()?.split("=");
+      const [trait_type, value] = item || [];
+      return { trait_type, value: value.split(".")[0] };
+    });
+    const fileName = encodeBase64(JSON.stringify(attributes));
+    setName(fileName);
+    setAttr(attributes);
     setImgs(imgList);
   };
 
@@ -74,5 +91,5 @@ export default function useAvatar() {
     getAvatar();
   }, []);
 
-  return { imgs, getAvatar };
+  return { imgs, getAvatar, attr, name };
 }

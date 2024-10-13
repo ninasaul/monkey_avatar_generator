@@ -7,7 +7,7 @@ interface AvatarItemProps {
 
 const AvatarItem = forwardRef<HTMLDivElement, AvatarItemProps>(
   ({ size }, ref) => {
-    const { imgs } = useAvatar();
+    const { imgs, attr } = useAvatar();
     return (
       <div
         className={styles.img}
@@ -18,24 +18,11 @@ const AvatarItem = forwardRef<HTMLDivElement, AvatarItemProps>(
           <>
             {imgs.map((item: string, index: number) => (
               <div className={styles.imgbox} key={index}>
-                <img src={item} alt="avatar" />
+                <img src={item} alt={JSON.stringify(attr)} />
               </div>
             ))}
           </>
         )}
-        {/* <div className={styles.info}>
-          <div>name:#{+1} </div>
-
-          {imgs.map(item => {
-            if(!item) return null;
-            return (
-              <div key={item} className={styles.img_info}>
-                <div>{item && item.split("/").pop()?.split("=")[0]}: </div>
-                {item && item.split("/").pop()?.split("=")[1].split(".")[0]}
-              </div>
-            );
-          })}
-        </div> */}
       </div>
     );
   }
