@@ -79,8 +79,9 @@ export default function useAvatar() {
     const attributes = imgList.map((i) => {
       const item = i ? decodeURIComponent(i).split("=") : [];
       const [trait_type, value] = item || [];
+      const trait = trait_type.split("/");
       return {
-        trait_type: trait_type.split("/").pop() || "",
+        trait_type: trait.length > 0 ? trait_type.split("/").pop() : "",
         value: value && value.split(".")[0],
       };
     });
