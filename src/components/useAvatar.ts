@@ -79,7 +79,7 @@ export default function useAvatar() {
     const attributes = imgList.map((i) => {
       const item = i ? decodeURIComponent(i).split("/").pop()?.split("=") : [];
       const [trait_type, value] = item || [];
-      return { trait_type, value: value.split(".")[0] };
+      return { trait_type, value: value && value.split(".")[0] };
     });
     const fileName = encodeBase64(JSON.stringify(attributes));
     setName(fileName);
