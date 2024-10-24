@@ -31,7 +31,7 @@ type AttrTypes = {
 };
 export default function useAvatar() {
   const [imgs, setImgs] = useState<string[]>([]);
-  const [attr, setAttr] = useState<AttrTypes[]>([]);
+  const [attr, setAttr] = useState<any>(null);
   const [name, setName] = useState<string>("");
   const { encodeBase64 } = useBase64();
 
@@ -77,13 +77,14 @@ export default function useAvatar() {
   const getAvatar = async (): Promise<void> => {
     const imgList = await getRandomCombination();
     const attributes = imgList.map((i) => {
-      const item = i ? decodeURIComponent(i).split("/").pop()?.split("=") : [];
+      const item = i ? decodeURIComponent(i).split("=") : [];
       const [trait_type, value] = item || [];
-      return { trait_type, value: value && value.split(".")[0] };
+      return {
+        trait_type: trait_type.split("/").pop() || "",
+        value: value && value.split(".")[0],
+      };
     });
-    const fileName = encodeBase64(
-      JSON.stringify(imgList.map((i) => decodeURIComponent(i)) || attributes)
-    );
+    const fileName = encodeBase64(JSON.stringify(attributes));
     setName(fileName);
     setAttr(attributes);
     setImgs(imgList);
