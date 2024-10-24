@@ -77,7 +77,7 @@ export default function useAvatar() {
   const getAvatar = async (): Promise<void> => {
     const imgList = await getRandomCombination();
     const attributes = imgList.map((i) => {
-      const item = decodeURIComponent(i).split("/").pop()?.split("=");
+      const item = i ? decodeURIComponent(i).split("/").pop()?.split("=") : [];
       const [trait_type, value] = item || [];
       return { trait_type, value: value.split(".")[0] };
     });
