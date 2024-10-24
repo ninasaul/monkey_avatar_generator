@@ -7,7 +7,7 @@ interface AvatarItemProps {
 
 const AvatarItem = forwardRef<HTMLDivElement, AvatarItemProps>(
   ({ size }, ref) => {
-    const { imgs, attr } = useAvatar();
+    const { imgs, attr, name } = useAvatar();
     return (
       <div
         className={styles.img}
@@ -18,7 +18,7 @@ const AvatarItem = forwardRef<HTMLDivElement, AvatarItemProps>(
           <>
             {imgs.map((item: string, index: number) => (
               <div className={styles.imgbox} key={index}>
-                <img src={item} alt={JSON.stringify(attr)} />
+                <img src={item} alt={JSON.stringify(attr)} data-name={name} />
               </div>
             ))}
           </>

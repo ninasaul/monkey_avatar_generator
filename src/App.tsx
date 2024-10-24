@@ -57,10 +57,14 @@ function App() {
       if (avatarRefs.current[i]) {
         avatarRefs.current[i].classList.add(styles.capture);
         const canvas = await html2canvas(avatarRefs.current[i]);
+        const dataName = avatarRefs.current[i];
+        console.log(`dataName==`, avatarRefs.current[i].dataset.name);
         const imgData = canvas.toDataURL("image/png");
         const imgBase64 = imgData.split(",")[1];
         setTotal(i + 1);
-        imgFolder?.file(`avatar_${i + 1}.png`, imgBase64, { base64: true });
+        imgFolder?.file(`${dataName || "avatar"}_${i}.png`, imgBase64, {
+          base64: true,
+        });
       }
     }
 
